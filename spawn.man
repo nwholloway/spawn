@@ -1,0 +1,29 @@
+.TH SPAWN 8 "15th May 1994" "Linux" "Linux Programmer's Manual"
+.SH NAME
+spawn \- start a program connected to a tty
+.SH SYNOPSIS
+.B spawn
+tty command [ args ... ]
+.SH DESCRIPTION
+.B spawn
+will dissociate itself with the current controlling tty, become its own
+process group leader, and open
+.B tty
+as standard input, output, and error streams.  The new tty will
+become the new controlling terminal.
+The
+.B command
+is then started (using $PATH), with
+.I argv[0]
+being prefixed with a `-' to mark it as a login shell.
+.PP
+.B Spawn
+can be used to start a shell on an arbitrary tty, by using the command:
+.IR "spawn /dev/tty2 /bin/bash" .
+.SH "SEE ALSO"
+.BR login (1),
+.BR init (8),
+.BR getty (8)
+.\" .SH BUGS
+.SH AUTHOR
+Nick Holloway
